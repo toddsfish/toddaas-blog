@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on toddaas blog</title>
+    <link>/categories/</link>
+    <description>Recent content in Categories on toddaas blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-AU</language>
+    
+	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+    <item>
+      <title>the start of my rambling on</title>
+      <link>/the-start-of-my-rambling-on/</link>
+      <pubDate>Mon, 28 Sep 2020 14:58:21 +1000</pubDate>
+      
+      <guid>/the-start-of-my-rambling-on/</guid>
+      <description>In the big wide world of technology its impossible not to spent your time learning. Im often learning, testing, breaking or doing something that I never document. This is my attempt to capture what I&amp;rsquo;ve learnt (am learning) and learn even more. Wordpress was fun back in the day for a single post. Only time will tell this is any better&amp;hellip;</description>
+    </item>
+    
+    
+    
+    
+  </channel>
+</rss>
