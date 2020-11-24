@@ -2,6 +2,6 @@
 title: "About"
 draft: false
 ---
-A cloud engineer (trying to become SA) from Sydney, Australia.
+Cloud engineer from Sydney, Australia.
 
-Token disclaimer - none of the ideas or views expressed in any of my posts are shared, supported, or endorsed in any manner by my employer.
+Token disclaimer: none of the ideas or views expressed in any of my posts are shared, supported, or endorsed in any manner by my employer.

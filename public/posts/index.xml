@@ -6,9 +6,22 @@
     <description>Recent content in Posts on toddaas blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-AU</language>
-    <lastBuildDate>Mon, 28 Sep 2020 14:58:21 +1000</lastBuildDate>
+    <lastBuildDate>Tue, 29 Sep 2020 21:42:07 +1000</lastBuildDate>
     
 	<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+    <item>
+      <title>Test post</title>
+      <link>/test-post/</link>
+      <pubDate>Tue, 29 Sep 2020 21:42:07 +1000</pubDate>
+      
+      <guid>/test-post/</guid>
+      <description>&amp;lt;h1&amp;gt;Hello, World!&amp;lt;/h1&amp;gt; &amp;lt;h1&amp;gt;Hello, World!&amp;lt;/h1&amp;gt;       View this post on Instagram        #Talitha #Getty #yacht in #fjærland #fjærlandsfjorden #sognefjorden #mundal #norway #landscape #panorama #travel #instagoodmyphoto #justgoshoot #peoplescreatives #visualsoflife #photography #photoshoot #photodaily #photogram #instagood #picoftheday #fjærland #photooftheday #pentax #nrksf #sognavis
+A post shared by Bjørn Erik Pedersen (@bepsays) on Jul 6, 2017 at 9:27am PDT
+     View this post on Instagram         A post shared by Bjørn Erik Pedersen (@bepsays) on Jul 6, 2017 at 9:27am PDT</description>
+    </item>
     
     
     
@@ -18,7 +31,7 @@
       <pubDate>Mon, 28 Sep 2020 14:58:21 +1000</pubDate>
       
       <guid>/the-start-of-my-rambling-on/</guid>
-      <description>In the big wide world of technology its impossible not to spent your time learning. Im often learning, testing, breaking or doing something that I never document. This is my attempt to capture what I&amp;rsquo;ve learnt (am learning) and learn even more. Wordpress was fun back in the day for a single post. Only time will tell this is any better&amp;hellip;</description>
+      <description>In the big wide world of technology its impossible not to spent your time learning. Im often learning, testing, breaking or doing something that I never document. This is my attempt to capture what I&amp;rsquo;ve learnt (am learning) and continuously learn. Wordpress was fun back in the day for a single post. Only time will tell this is any better&amp;hellip;</description>
     </item>
     
     
