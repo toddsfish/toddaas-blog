@@ -13,6 +13,7 @@ As part of this series of posts I'm going to see how I go at honing my developme
 
 So to start things off, over the course of the past couple of weeks.  I've put together a simple monolithic Flask based photo sharing social media application, styled with a small amount of Skeleton CSS. I've named it TODDaaSagram.  Its bare bones and probably horribly coded by any seasoned developer standard.  That said its a decent foundation for me to build upon to explore and incorporate some of the aforementioned developer technologies.  At the same time I'm hoping to apply some of the creatively that I bring to the table.  I definitely see creativity is more free flowing from the developer side of the equation, than the infrastructure the side so this will be part of the experiment.
 
+
 ![toddaas-social-1](/img/toddaas-social-1.gif)
 
 You can find application code via my github repo https://github.com/toddsfish/toddaas-social
