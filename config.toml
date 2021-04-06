@@ -8,7 +8,7 @@ pygmentsUseClasses = true
 
 [params]
   description = "A cloud engineer"
-  copyright = "Copyright © 2020 toddaas"
+  copyright = "Copyright © 2021 toddaas"
   dark = true
   highlight = true
 
