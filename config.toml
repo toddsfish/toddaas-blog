@@ -1,5 +1,6 @@
 baseURL = "/"
 title = "toddaas blog"
+enableRobotsTXT = true
 theme = "etch"
 languageCode = "en-AU"
 enableInlineShortcodes = true
