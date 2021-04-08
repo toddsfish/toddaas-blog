@@ -16,4 +16,4 @@ So to start things off, over the course of the past couple of weeks.  I've put t
 
 ![toddaas-social-1](/img/toddaas-social-1.gif)
 
-You can find application code via my github repo https://github.com/toddsfish/toddaas-social
+You can find the application code via my github repo https://github.com/toddsfish/toddaas-social
