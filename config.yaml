@@ -52,10 +52,10 @@ params:
 
     # profile-mode
     profileMode:
-        enabled: false # needs to be explicitly set
-        title: ExampleSite
-        subtitle: "This is subtitle"
-        imageUrl: "<img location>"
+        enabled: true # needs to be explicitly set
+        title: "Todd Bryant"
+        subtitle: "A cloud (network) engineer based in Sydney, Australia"
+        imageUrl: "/img/570243.jpg"
         imageWidth: 120
         imageHeight: 120
         imageTitle: my image
