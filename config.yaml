@@ -28,7 +28,7 @@ params:
 
     ShowReadingTime: true
     ShowShareButtons: false
-    ShowPostNavLinks: false
+    ShowPostNavLinks: true
     ShowBreadCrumbs: true
     disableSpecial1stPost: false
     disableScrollToTop: false
@@ -54,16 +54,12 @@ params:
     profileMode:
         enabled: true # needs to be explicitly set
         title: "Todd Bryant"
-        subtitle: "A cloud (network) engineer based in Sydney, Australia"
+        subtitle: "A cloud (network) engineer based in Sydney, Australia."
         imageUrl: "/img/570243.jpg"
         imageWidth: 120
         imageHeight: 120
-        imageTitle: my image
-        buttons:
-            - name: Posts
-              url: posts
-            - name: Tags
-              url: tags
+        imageTitle: This is me
+        
 
     # home-info mode
     homeInfoParams:
@@ -75,6 +71,10 @@ params:
           url: "https://www.linkedin.com/in/bryanttodd/"
         - name: github
           url: "https://github.com/toddsfish"
+        - name: other
+          url: "https://toddaas-aueast-prod-shaarli.azurewebsites.net/"
+        - name: twitter
+          url: "https://twitter.com/toomanytodds"
         - name: instagram
           url: "https://instagram.com/tt0odd"
 
