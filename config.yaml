@@ -64,8 +64,8 @@ params:
 
     # home-info mode
     homeInfoParams:
-        Title: "Gday \U0001F44B"
-        Content: From a cloud (network) engineer from Sydney, Australia.
+        Title: "Gday, \U0001F44B"
+        Content: Welcome to the journal of learnings from a cloud (network) engineer based in Sydney, Australia.
 
     socialIcons:
         - name: linkedin
