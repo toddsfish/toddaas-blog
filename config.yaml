@@ -59,6 +59,9 @@ params:
         imageWidth: 120
         imageHeight: 120
         imageTitle: This is me
+        buttons:
+            - name: Posts
+              url: posts
         
 
     # home-info mode
@@ -92,7 +95,7 @@ params:
         hiddenInSingle: true # hide on single page
 
     editPost:
-        URL: "https://github.com/<path_to_repo>/content"
+        URL: "https://github.com/toddsfish/toddaas-blog/tree/master/content/"
         Text: "Suggest Changes" # edit text
         appendFilePath: true # to append file path to Edit link
 
