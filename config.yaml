@@ -18,7 +18,7 @@ params:
     env: production # to enable google analytics, opengraph, twitter-cards and schema.
     title: toddaas
     description: "toddaas"
-    keywords: [Blog, Portfolio, PaperMod]
+    keywords: [blog, toddaas]
     author: Todd
     # author: ["Me", "You"] # multiple authors
     images: ["<link or path of image for opengraph, twitter-cards>"]
@@ -26,9 +26,9 @@ params:
     defaultTheme: auto # dark, light
     disableThemeToggle: true
 
-    ShowReadingTime: false
+    ShowReadingTime: true
     ShowShareButtons: false
-    ShowPostNavLinks: true
+    ShowPostNavLinks: false
     ShowBreadCrumbs: true
     disableSpecial1stPost: false
     disableScrollToTop: false
@@ -37,6 +37,9 @@ params:
     hideSummary: false
     showtoc: false
     tocopen: false
+
+    label:
+        text: " "
 
     assets:
         # disableHLJS: true # to disable highlight.js
@@ -105,14 +108,18 @@ params:
         keys: ["title", "permalink", "summary", "content"]
 menu:
     main:
-        - identifier: categories
-          name: categories
-          url: /categories/
+        - identifier: home
+          name: home
+          url: /
           weight: 10
+        - identifier: posts
+          name: posts
+          url: /posts/
+          weight: 20
         - identifier: tags
           name: tags
           url: /tags/
-          weight: 20
+          weight: 30
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 # pygmentsUseClasses: true
 # markup:
