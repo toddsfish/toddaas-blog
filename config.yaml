@@ -26,7 +26,7 @@ params:
     defaultTheme: auto # dark, light
     disableThemeToggle: true
 
-    ShowReadingTime: true
+    ShowReadingTime: false
     ShowShareButtons: false
     ShowPostNavLinks: true
     ShowBreadCrumbs: true
@@ -65,7 +65,7 @@ params:
     # home-info mode
     homeInfoParams:
         Title: "Gday, \U0001F44B"
-        Content: Welcome learnings of a cloud (network) engineer based in Sydney, Australia.
+        Content: Welcome to the learnings of a cloud (network) engineer based in Sydney, Australia.
 
     socialIcons:
         - name: linkedin

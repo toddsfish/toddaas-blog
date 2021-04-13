@@ -1,6 +1,7 @@
 ---
 title: "Leaning towards dev(ops)"
 date: 2021-04-07T5:10:21+10:00
+tags: ["aws","dev", "python", "flask", "dva-c01"]
 draft: false
 ---
 Starting this year I made it key goal of mine to actively build upon whatever dev knowledge I still remember from my bachelors about 10 years ago.  Of course the dev mindset is still kinda there.  I started my professional endeavors in the jack of all trades infrastructure engineering space following my IT degree.  With a small focus on the networking side of things.  During my work I've always adopted the DRY mantra.  I'm  scripting where I can in Python, Powershell, Bash etc to enable me to move onto more rewarding tasks.  By adopting this mindset of automating the more mundane tasks required of a (cloud) infrastructure engineer, its definitely bought me some personal time along the way.
