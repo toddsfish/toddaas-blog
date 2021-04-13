@@ -1,1 +1,3 @@
 User-agent: *
+Disallow:
+Sitemap: https://blog.toddaas.com/sitemap.xml
