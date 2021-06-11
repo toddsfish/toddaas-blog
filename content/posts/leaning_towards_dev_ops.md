@@ -8,7 +8,7 @@ Starting this year I made it key goal of mine to actively build upon whatever de
 
 Moving onto the motivation behind this set of dev transformational posts.  As I've increased my knowledge of AWS in the past few years, mainly due to my day to day work involving supporting the cloud networks of Business and Enterprise customers from around the world.  I've found a whole heap of our customer interactions are with mainly developers or what I would dub full stack engineers not strictly developers.
 
-As such to compliment this point I my career, I've decided Im going to focus on a developer aimed certification the AWS Developer Associate certification (DVA-C01) that incorporates the networking services I know pretty well - and those that I'm not 100% at or have never applied to in the real world myself.
+As such to compliment this point I my career, I've decided Im going to focus on a developer aimed certification the AWS Developer Associate (DVA-C01) which incorporates the networking services I know well and those dev related services I'm not 100% at or have never applied.
 
 As part of this series of posts I'm going to see how I go at honing my development skills as a full stack engineer.  By doing so Im hoping to build upon the foundational knowledge required for me to take the AWS Developer Associate certification (DVA-C01).  In turn I'm hoping to transform a simple web application in terms of the modern developer stacks, I keep hearing about.  React event driven Single Page Web Application (SPAs) with restful APIs (API Gateway) backed by containerised (EKS) micro services and NoSQL databases (DynamoDB) seem to be all the rage.
 
