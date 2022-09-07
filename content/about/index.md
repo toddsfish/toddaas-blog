@@ -1,6 +1,6 @@
 ---
 title: "About"
-draft: false
+draft: true
 ---
 A cloud architect based on the Gold Coast, Australia.
 
