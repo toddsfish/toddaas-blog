@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Posts on toddaas</title>
     <link>https://blog.toddaas.com/posts/</link>
@@ -25,7 +25,7 @@
       <pubDate>Mon, 28 Sep 2020 14:58:21 +1000</pubDate>
       
       <guid>https://blog.toddaas.com/posts/the_start_of_my_rambling_on/</guid>
-      <description>In the big wide world of technology its impossible not to spent your time learning. Im often learning, testing, breaking or doing something that I never document. This is my attempt to capture what I&amp;rsquo;ve learnt (am learning) and continuously learn. Wordpress was fun back in the day for a single post. Only time will tell this is any better&amp;hellip;</description>
+      <description>In the big wide world of technology its impossible not to spent your time learning. Im often learning, testing, breaking or doing something that I never document. This is my attempt to capture what I&amp;rsquo;ve learnt (am learning). Wordpress was fun back in the day for a single post. Only time will tell if this is any better&amp;hellip;</description>
     </item>
     
   </channel>
