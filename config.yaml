@@ -1,5 +1,5 @@
 baseURL: "https://blog.toddaas.com/"
-title: toddaas
+title: toddaas blog
 paginate: 5
 theme: PaperMod
 
