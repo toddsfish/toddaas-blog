@@ -27,11 +27,14 @@ In a standard autoscaling group with a Lifecycle Hook applied on EC2_INSTANCE_LA
 ![Standard Lifecycle Hooks](/img/lifecycle_hooks.png "Standard Lifecycle Hooks")
 
 #### Scenario 2 - An Autoscaling group with an existing Lifecycle Hook applied on EC2_INSTANCE_LAUNCHING alongside a Warm Pool
+For an autoscaling group taking advantage of Warmpools alongside an existing EC2_INSTANCE_LAUNCHING Lifecycle Hook. You need to factor in that an instance will enter into a Pending:Wait state twice triggering the Lifecycle Hook **twice**.  
 ![Lifecycle Hooks with Warm Pools](/img/warm-pools-lifecycle-hooks.png "Lifecycle Hooks with Warm Pools")
+1. The first time its triggered when the instance is started / launched and bootstrapped with automation UserData scripts or SSM whilst in the Warmed:Pending:Wait.  The automation finalise with the first complete-lifecycle-action API call to move the instance into Warm Pool Warmed:Running, Warmed:Stopped or Warmed:Hibernated within the Warm Pool.
+2. Then again on Scale Out of the autoscaling group when the instances move from the Warm pool into the ASG they goes into Pending, Pending Wait and then ONLY after the complete-lifecycle-action API has been called again does the instance move to Inservice.
 
 ### The solution you guessed it, more automation!
 
-
+The easiest way to solve this potentially undesirable behaviour of your UserData or SSM automation having to deal with calling the complete-lifecycle-action twice is easily solved with a Lambda function thats triggered through a Cloudwatch EventBridge Rule.  EC2 Auto Scaling like other AWS services supports publishing its event directly to Cloudwatch Event Bridge.  As such its possible to create an EventBridge rule that filters for Warm Pool related events based on the instances Origin Warm Pool and Destination autoscaling group.  This EventBridge rule then triggers a Lambda function which calls the complete-lifecycle-action API to complete the Lifecycle Action for the second time without your UserData or SSM automation scripts having to factor this in.  I'll cover this solution along Warm Pools in a CDK example as part of part 2 of  this post.
 
 ### Other useful references:
 Warm Pools
@@ -42,3 +45,6 @@ https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks-overview.h
 
 Lifecycle Hooks with Warm Pools
 https://docs.aws.amazon.com/autoscaling/ec2/userguide/warm-pool-instance-lifecycle.html
+
+Warm Pool Patterns for Event Bridge
+https://docs.aws.amazon.com/autoscaling/ec2/userguide/warm-pools-eventbridge-events.html
