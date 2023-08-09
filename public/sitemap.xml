@@ -11,13 +11,16 @@
     <loc>https://blog.toddaas.com/tags/aws/</loc>
     <lastmod>2023-08-08T05:10:21+10:00</lastmod>
   </url><url>
+    <loc>https://blog.toddaas.com/tags/cdk/</loc>
+    <lastmod>2023-08-08T05:10:21+10:00</lastmod>
+  </url><url>
     <loc>https://blog.toddaas.com/tags/ec2/</loc>
     <lastmod>2023-08-08T05:10:21+10:00</lastmod>
   </url><url>
     <loc>https://blog.toddaas.com/tags/ec2-autoscaling/</loc>
     <lastmod>2023-08-08T05:10:21+10:00</lastmod>
   </url><url>
-    <loc>https://blog.toddaas.com/posts/ec2_warm_pools_are_useful/</loc>
+    <loc>https://blog.toddaas.com/posts/ec2_warm_pools_are_useful_part_1/</loc>
     <lastmod>2023-08-08T05:10:21+10:00</lastmod>
   </url><url>
     <loc>https://blog.toddaas.com/tags/eventbridge/</loc>

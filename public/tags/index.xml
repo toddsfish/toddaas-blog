@@ -5,6 +5,7 @@
     <link>https://blog.toddaas.com/tags/</link>
     <description>Recent content in Tags on toddaas blog</description>
     <image>
+      <title>toddaas blog</title>
       <url>https://blog.toddaas.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://blog.toddaas.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
@@ -35,6 +36,15 @@
       <pubDate>Tue, 08 Aug 2023 05:10:21 +1000</pubDate>
       
       <guid>https://blog.toddaas.com/tags/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cdk</title>
+      <link>https://blog.toddaas.com/tags/cdk/</link>
+      <pubDate>Tue, 08 Aug 2023 05:10:21 +1000</pubDate>
+      
+      <guid>https://blog.toddaas.com/tags/cdk/</guid>
       <description></description>
     </item>
     
