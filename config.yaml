@@ -25,11 +25,10 @@ params:
     DateFormat: "January 2, 2006"
     defaultTheme: light # dark, light
     disableThemeToggle: true
-
     ShowReadingTime: true
-    ShowShareButtons: true
+    ShowShareButtons: false
     ShowPostNavLinks: true
-    ShowBreadCrumbs: true
+    ShowBreadCrumbs: false
     disableSpecial1stPost: false
     disableScrollToTop: false
     comments: false
@@ -38,7 +37,6 @@ params:
     hideSummary: true
     showtoc: false
     tocopen: false
-
     label:
         text: " "
 
@@ -55,14 +53,11 @@ params:
     profileMode:
         enabled: true # needs to be explicitly set
         title: "Todd Bryant"
-        subtitle: "A cloud architect based on the Gold Coast 🌊, Australia."
+        subtitle: "A cloud architect based in Northern NSW, Australia. Not far from the Goldy.."
         imageUrl: "/img/570243.jpg"
         imageWidth: 120
         imageHeight: 120
         imageTitle: This is me
-        buttons:
-            - name: Posts
-              url: posts
         
 
     # home-info mode
@@ -75,12 +70,6 @@ params:
           url: "https://www.linkedin.com/in/bryanttodd/"
         - name: github
           url: "https://github.com/toddsfish"
-        - name: other
-          url: "https://toddaas-aueast-prod-shaarli.azurewebsites.net/"
-        - name: twitter
-          url: "https://twitter.com/toomanytodds"
-        - name: instagram
-          url: "https://instagram.com/tt0odd"
 
     analytics:
         google:
@@ -94,11 +83,6 @@ params:
         hidden: true # hide everywhere but not in structured data
         hiddenInList: true # hide on list pages and home
         hiddenInSingle: true # hide on single page
-
-    editPost:
-        URL: "https://github.com/toddsfish/toddaas-blog/tree/master/content/"
-        Text: "Suggest Changes" # edit text
-        appendFilePath: true # to append file path to Edit link
 
     # for search
     # https://fusejs.io/api/options.html
@@ -116,18 +100,14 @@ menu:
           name: home
           url: /
           weight: 1
-        - identifier: about
-          name: about
-          url: /about/
-          weight: 2
         - identifier: posts
           name: posts
           url: /posts/
-          weight: 3
+          weight: 2
         - identifier: tags
           name: tags
           url: /tags/
-          weight: 4
+          weight: 3
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 # pygmentsUseClasses: true
 # markup:

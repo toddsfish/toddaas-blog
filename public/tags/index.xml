@@ -1,21 +1,94 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Tags on toddaas</title>
+    <title>Tags on toddaas blog</title>
     <link>https://blog.toddaas.com/tags/</link>
-    <description>Recent content in Tags on toddaas</description>
+    <description>Recent content in Tags on toddaas blog</description>
     <image>
       <url>https://blog.toddaas.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://blog.toddaas.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 07 Apr 2021 05:10:21 +1000</lastBuildDate><atom:link href="https://blog.toddaas.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>Tue, 08 Aug 2023 05:10:21 +1000</lastBuildDate><atom:link href="https://blog.toddaas.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>automation</title>
+      <link>https://blog.toddaas.com/tags/automation/</link>
+      <pubDate>Tue, 08 Aug 2023 05:10:21 +1000</pubDate>
+      
+      <guid>https://blog.toddaas.com/tags/automation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>autoscaling</title>
+      <link>https://blog.toddaas.com/tags/autoscaling/</link>
+      <pubDate>Tue, 08 Aug 2023 05:10:21 +1000</pubDate>
+      
+      <guid>https://blog.toddaas.com/tags/autoscaling/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>aws</title>
       <link>https://blog.toddaas.com/tags/aws/</link>
-      <pubDate>Wed, 07 Apr 2021 05:10:21 +1000</pubDate>
+      <pubDate>Tue, 08 Aug 2023 05:10:21 +1000</pubDate>
       
       <guid>https://blog.toddaas.com/tags/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ec2</title>
+      <link>https://blog.toddaas.com/tags/ec2/</link>
+      <pubDate>Tue, 08 Aug 2023 05:10:21 +1000</pubDate>
+      
+      <guid>https://blog.toddaas.com/tags/ec2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ec2 autoscaling</title>
+      <link>https://blog.toddaas.com/tags/ec2-autoscaling/</link>
+      <pubDate>Tue, 08 Aug 2023 05:10:21 +1000</pubDate>
+      
+      <guid>https://blog.toddaas.com/tags/ec2-autoscaling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>eventbridge</title>
+      <link>https://blog.toddaas.com/tags/eventbridge/</link>
+      <pubDate>Tue, 08 Aug 2023 05:10:21 +1000</pubDate>
+      
+      <guid>https://blog.toddaas.com/tags/eventbridge/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>lambda</title>
+      <link>https://blog.toddaas.com/tags/lambda/</link>
+      <pubDate>Tue, 08 Aug 2023 05:10:21 +1000</pubDate>
+      
+      <guid>https://blog.toddaas.com/tags/lambda/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>lambda function</title>
+      <link>https://blog.toddaas.com/tags/lambda-function/</link>
+      <pubDate>Tue, 08 Aug 2023 05:10:21 +1000</pubDate>
+      
+      <guid>https://blog.toddaas.com/tags/lambda-function/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>serverless</title>
+      <link>https://blog.toddaas.com/tags/serverless/</link>
+      <pubDate>Tue, 08 Aug 2023 05:10:21 +1000</pubDate>
+      
+      <guid>https://blog.toddaas.com/tags/serverless/</guid>
       <description></description>
     </item>
     
