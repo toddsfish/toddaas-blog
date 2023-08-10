@@ -10,34 +10,34 @@ I came up against some a customer requirement of minimising the impact of long a
 
 {{< youtube id="Q6TLWqn82J4" >}}
 
-### What are EC2 Autoscaling Warm Pools?
-https://aws.amazon.com/blogs/compute/scaling-your-applications-faster-with-ec2-auto-scaling-warm-pools/
+## What are EC2 Autoscaling Warm Pools?
+EC2 Auto Scaling Warm Pools are a set of pre-intiallised instances that an autoscaling group can maintain to reduce the latency incurred through long boostrap processes.  When a scale out action occurs the autoscaling group has the ability to draw from the already bootstrapped instance capacity in the Warm Pool rather than launching a fresh new instance incurring bootstrap time.
 
-### Why would you use Autoscaling Warm Pools?
-Warm pools are super useful when you have an application that has a significant amount of bootstrapping time usually attibuted to bespoke application configuration requirements applied on instance launch into an Autoscaling Group.  Additionally using third party AMIs or image building solutions has the overeheads that someone needs to own any bespoke application configuration as you build out more diverse AMIs rather just sticking to a hardened standard operating environment or golden image.  In turn this becomes even more of a burden when the application team is a third party and the ops team is in house. 
+## Why would you use Autoscaling Warm Pools?
+Warm pools are super useful when you have a significant amount of bootstrapping time usually attibuted to bespoke configuration requirements of instances launched into an Autoscaling Group.  Additionally using third party AMIs or image building solutions has the overeheads that someone needs to own any bespoke configuration as you build out more diverse AMIs rather just sticking to hardened standard operating environments or golden images.  This becomes even more of a burden when the application team is a third party with an ops team in house.  On top of the obvious benefit of faster scale-out times there is also the added benefit of cost reductions.  When instances enter a warm pool they can be placed into one of three states: Warmed:Stopped, Warmed:Hibernated and Warmed:Running.  So for example by keeping warm pool instances in Warmed:Stopped you can effective minimise costs.  In this state you only pay for the volumes used, elastic ips associated etc. So when you keep your instances stopped or hibernated your saving on the cost of the instances themselves.
 
-### How do Autoscaling Group Lifecycle Hooks work when using Warm Pools
+## How do Autoscaling Group Lifecycle Hooks work when using Warm Pools
 So I learnt there is abit of a gotcha or side affect by design of Warm Pools, when it comes to using them alongside existing Lifecycle hooks to do bootstrapping of an application on EC2 instance launch.
 
 Lets take a couple of example scenarios...
 
-#### Scenario 1 - A Standard Autocaling group with Lifecycle Hook applied on EC2_INSTANCE_LAUNCHING:
+### Scenario 1 - A Standard Autocaling group with Lifecycle Hook applied on EC2_INSTANCE_LAUNCHING:
 In a standard autoscaling group with a Lifecycle Hook applied on EC2_INSTANCE_LAUNCHING scale out. The instance first moves into Pending:Wait state, whereby it will remain in the Pending:Wait state whilst you bootstrap or configure your instance using automation usually in the form of UserData scripts or SSM automations.  As such the final step in your automation following the instance bootstrap will be to call the complete-lifecycle-action API to continue or complete the lifecycle action.  The autoscaling group then continues moving the instance into InService within the autoscaling group ready to serve client requests.
 
 ![Standard Lifecycle Hooks](/img/lifecycle_hooks.png "Standard Lifecycle Hooks")
 
-#### Scenario 2 - An Autoscaling group with an existing Lifecycle Hook applied on EC2_INSTANCE_LAUNCHING alongside a Warm Pool
+### Scenario 2 - An Autoscaling group with an existing Lifecycle Hook applied on EC2_INSTANCE_LAUNCHING alongside a Warm Pool
 For an autoscaling group taking advantage of Warmpools alongside an existing EC2_INSTANCE_LAUNCHING Lifecycle Hook. You need to factor in that an instance will enter into a Pending:Wait state twice triggering the Lifecycle Hook **twice**.  
 ![Lifecycle Hooks with Warm Pools](/img/warm-pools-lifecycle-hooks.png "Lifecycle Hooks with Warm Pools")
 1. The first time its triggered when the instance is started / launched and bootstrapped with automation UserData scripts or SSM whilst in the Warmed:Pending:Wait.  The automation finalise with the first complete-lifecycle-action API call to move the instance into Warm Pool Warmed:Running, Warmed:Stopped or Warmed:Hibernated within the Warm Pool.
 2. Then again on Scale Out of the autoscaling group when the instances move from the Warm pool into the ASG they goes into Pending, Pending Wait and then ONLY after the complete-lifecycle-action API has been called again does the instance move to Inservice.
 
-### So whats the solution?
-### You guessed it, more automation!
+## So whats the solution?
+## You guessed it, more automation!
 
 The easiest way to solve this potentially undesirable behavior of your UserData or your SSM automation having to deal with calling the complete-lifecycle-action twice can easily be solved with a Lambda function thats triggered through a Cloudwatch EventBridge Rule.  EC2 Auto Scaling like other AWS services supports publishing its lifecycle events directly to Cloudwatch EventBridge.  As such its possible to create an EventBridge rule that filters for Warm Pool related events for example based on the instances Origin Warm Pool and Destination autoscaling group.  The rule then triggers a Lambda function which calls the complete-lifecycle-action API to continue for the second time without your UserData or SSM automation scripts having to factor this in.  I'll cover this Lifecycle hook automation along with overall Warm Pools in a example CDK as a follow up to this post.
 
-### Other useful references:
+## Other useful references:
 Warm Pools
 https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html
 
