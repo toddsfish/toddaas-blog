@@ -6,7 +6,7 @@ draft: false
 ---
 
 ## So whats the scenario?
-I came up against some a customer requirement of minimising the impact of long application bootstrap times in an autoscaling group partnered along side the requirement of keeping their standard barebones EC2 AMI interchangable.  Essentially the customer did not want to have to deal with the bloat or overheads of maintaining a specific prebaked application AMI alongside an image building solution like EC2 Image Builder or a third party solution like Hashicorp Packer.  Enter EC2 Autoscaling Warm Pools...
+I came up against conflicting customer requirements of minimising the impact of long application bootstrap times in an autoscaling group partnered along side the requirement of keeping their standard barebones EC2 AMIs interchangable.  Essentially the customer did not want to have to deal with the bloat or overheads of maintaining a specific prebaked application AMI alongside an image building solution like EC2 Image Builder or a third party solution like Hashicorp Packer.  Enter EC2 Autoscaling Warm Pools...
 
 {{< youtube id="Q6TLWqn82J4" >}}
 
