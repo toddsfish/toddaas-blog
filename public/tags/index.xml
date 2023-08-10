@@ -11,94 +11,13 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 08 Aug 2023 05:10:21 +1000</lastBuildDate><atom:link href="https://blog.toddaas.com/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>automation</title>
-      <link>https://blog.toddaas.com/tags/automation/</link>
-      <pubDate>Tue, 08 Aug 2023 05:10:21 +1000</pubDate>
-      
-      <guid>https://blog.toddaas.com/tags/automation/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>autoscaling</title>
-      <link>https://blog.toddaas.com/tags/autoscaling/</link>
-      <pubDate>Tue, 08 Aug 2023 05:10:21 +1000</pubDate>
-      
-      <guid>https://blog.toddaas.com/tags/autoscaling/</guid>
-      <description></description>
-    </item>
-    
+    <lastBuildDate>Wed, 07 Apr 2021 05:10:21 +1000</lastBuildDate><atom:link href="https://blog.toddaas.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>aws</title>
       <link>https://blog.toddaas.com/tags/aws/</link>
-      <pubDate>Tue, 08 Aug 2023 05:10:21 +1000</pubDate>
+      <pubDate>Wed, 07 Apr 2021 05:10:21 +1000</pubDate>
       
       <guid>https://blog.toddaas.com/tags/aws/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>cdk</title>
-      <link>https://blog.toddaas.com/tags/cdk/</link>
-      <pubDate>Tue, 08 Aug 2023 05:10:21 +1000</pubDate>
-      
-      <guid>https://blog.toddaas.com/tags/cdk/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ec2</title>
-      <link>https://blog.toddaas.com/tags/ec2/</link>
-      <pubDate>Tue, 08 Aug 2023 05:10:21 +1000</pubDate>
-      
-      <guid>https://blog.toddaas.com/tags/ec2/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ec2 autoscaling</title>
-      <link>https://blog.toddaas.com/tags/ec2-autoscaling/</link>
-      <pubDate>Tue, 08 Aug 2023 05:10:21 +1000</pubDate>
-      
-      <guid>https://blog.toddaas.com/tags/ec2-autoscaling/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>eventbridge</title>
-      <link>https://blog.toddaas.com/tags/eventbridge/</link>
-      <pubDate>Tue, 08 Aug 2023 05:10:21 +1000</pubDate>
-      
-      <guid>https://blog.toddaas.com/tags/eventbridge/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>lambda</title>
-      <link>https://blog.toddaas.com/tags/lambda/</link>
-      <pubDate>Tue, 08 Aug 2023 05:10:21 +1000</pubDate>
-      
-      <guid>https://blog.toddaas.com/tags/lambda/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>lambda function</title>
-      <link>https://blog.toddaas.com/tags/lambda-function/</link>
-      <pubDate>Tue, 08 Aug 2023 05:10:21 +1000</pubDate>
-      
-      <guid>https://blog.toddaas.com/tags/lambda-function/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>serverless</title>
-      <link>https://blog.toddaas.com/tags/serverless/</link>
-      <pubDate>Tue, 08 Aug 2023 05:10:21 +1000</pubDate>
-      
-      <guid>https://blog.toddaas.com/tags/serverless/</guid>
       <description></description>
     </item>
     
