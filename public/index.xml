@@ -11,7 +11,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 07 Apr 2021 05:10:21 +1000</lastBuildDate><atom:link href="https://blog.toddaas.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 08 Aug 2023 05:10:21 +1000</lastBuildDate><atom:link href="https://blog.toddaas.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>EC2 Autoscaling Warm Pools are very useful for looooooooong bootstrap times - Part 1</title>
+      <link>https://blog.toddaas.com/posts/ec2_warm_pools_are_useful_part_1/</link>
+      <pubDate>Tue, 08 Aug 2023 05:10:21 +1000</pubDate>
+      
+      <guid>https://blog.toddaas.com/posts/ec2_warm_pools_are_useful_part_1/</guid>
+      <description>So whats the scenario? I came up against conflicting customer requirements of minimising the impact of long application bootstrap times in an autoscaling group partnered along side the requirement of keeping their standard barebones EC2 AMIs interchangable. Essentially the customer did not want to have to deal with the bloat or overheads of maintaining a specific prebaked application AMI alongside an image building solution like EC2 Image Builder or a third party solution like Hashicorp Packer.</description>
+    </item>
+    
     <item>
       <title>Leaning towards dev(ops)</title>
       <link>https://blog.toddaas.com/posts/leaning_towards_dev_ops/</link>
