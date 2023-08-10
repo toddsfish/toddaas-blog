@@ -40,6 +40,7 @@ The easiest way to solve this potentially undesirable behavior of your UserData 
 ## Other useful references:
 Warm Pools
 https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html
+https://aws.amazon.com/blogs/compute/scaling-your-applications-faster-with-ec2-auto-scaling-warm-pools/
 
 EC2 Autoscaling Lifecycle Hooks
 https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks-overview.html
