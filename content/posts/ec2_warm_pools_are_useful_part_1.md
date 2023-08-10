@@ -14,12 +14,12 @@ I came up against some a customer requirement of minimising the impact of long a
 https://aws.amazon.com/blogs/compute/scaling-your-applications-faster-with-ec2-auto-scaling-warm-pools/
 
 ### Why would you use Autoscaling Warm Pools?
-Warm pools are super useful when you have an application that has a significant amount of bootstrapping time usually attibuted to bespoke application configuration requirements applied on instance launch into an Autoscaling Group.
+Warm pools are super useful when you have an application that has a significant amount of bootstrapping time usually attibuted to bespoke application configuration requirements applied on instance launch into an Autoscaling Group.  Additionally using third party AMIs or image building solutions has the overeheads that someone needs to own any bespoke application configuration as you build out more diverse AMIs rather just sticking to a hardened standard operating environment or golden image.  In turn this becomes even more of a burden when the application team is a third party and the ops team is in house. 
 
 ### How do Autoscaling Group Lifecycle Hooks work when using Warm Pools
 So I learnt there is abit of a gotcha or side affect by design of Warm Pools, when it comes to using them alongside existing Lifecycle hooks to do bootstrapping of an application on EC2 instance launch.
 
-Lets take a couple of example scenarios:
+Lets take a couple of example scenarios...
 
 #### Scenario 1 - A Standard Autocaling group with Lifecycle Hook applied on EC2_INSTANCE_LAUNCHING:
 In a standard autoscaling group with a Lifecycle Hook applied on EC2_INSTANCE_LAUNCHING scale out. The instance first moves into Pending:Wait state, whereby it will remain in the Pending:Wait state whilst you bootstrap or configure your instance using automation usually in the form of UserData scripts or SSM automations.  As such the final step in your automation following the instance bootstrap will be to call the complete-lifecycle-action API to continue or complete the lifecycle action.  The autoscaling group then continues moving the instance into InService within the autoscaling group ready to serve client requests.
@@ -35,7 +35,7 @@ For an autoscaling group taking advantage of Warmpools alongside an existing EC2
 ### So whats the solution?
 ### You guessed it, more automation!
 
-The easiest way to solve this potentially undesirable behavior of your UserData or your SSM automation having to deal with calling the complete-lifecycle-action twice can easily be solved with a Lambda function thats triggered through a Cloudwatch EventBridge Rule.  EC2 Auto Scaling like other AWS services supports publishing its lifecycle events directly to Cloudwatch EventBridge.  As such its possible to create an EventBridge rule that filters for Warm Pool related events for example based on the instances Origin Warm Pool and Destination autoscaling group.  The rule then triggers a Lambda function which calls the complete-lifecycle-action API to continue for the second time without your UserData or SSM automation scripts having to factor this in.  I'll cover this automation along with a Warm Pools example in CDK as a folloow up part 2 of this post.
+The easiest way to solve this potentially undesirable behavior of your UserData or your SSM automation having to deal with calling the complete-lifecycle-action twice can easily be solved with a Lambda function thats triggered through a Cloudwatch EventBridge Rule.  EC2 Auto Scaling like other AWS services supports publishing its lifecycle events directly to Cloudwatch EventBridge.  As such its possible to create an EventBridge rule that filters for Warm Pool related events for example based on the instances Origin Warm Pool and Destination autoscaling group.  The rule then triggers a Lambda function which calls the complete-lifecycle-action API to continue for the second time without your UserData or SSM automation scripts having to factor this in.  I'll cover this Lifecycle hook automation along with overall Warm Pools in a example CDK as a follow up to this post.
 
 ### Other useful references:
 Warm Pools
