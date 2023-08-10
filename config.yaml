@@ -39,6 +39,7 @@ params:
     tocopen: false
     label:
         text: " "
+    ShowFullTextinRSS: true
 
     assets:
         # disableHLJS: true # to disable highlight.js

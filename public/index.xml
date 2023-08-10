@@ -19,6 +19,46 @@
       
       <guid>https://blog.toddaas.com/posts/ec2_warm_pools_are_useful_part_1/</guid>
       <description>So whats the scenario? I came up against conflicting customer requirements of minimising the impact of long application bootstrap times in an autoscaling group partnered along side the requirement of keeping their standard barebones EC2 AMIs interchangable. Essentially the customer did not want to have to deal with the bloat or overheads of maintaining a specific prebaked application AMI alongside an image building solution like EC2 Image Builder or a third party solution like Hashicorp Packer.</description>
+      <content:encoded><![CDATA[<h2 id="so-whats-the-scenario">So whats the scenario?</h2>
+<p>I came up against conflicting customer requirements of minimising the impact of long application bootstrap times in an autoscaling group partnered along side the requirement of keeping their standard barebones EC2 AMIs interchangable.  Essentially the customer did not want to have to deal with the bloat or overheads of maintaining a specific prebaked application AMI alongside an image building solution like EC2 Image Builder or a third party solution like Hashicorp Packer.  Enter EC2 Autoscaling Warm Pools&hellip;</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/Q6TLWqn82J4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<h2 id="what-are-ec2-autoscaling-warm-pools">What are EC2 Autoscaling Warm Pools?</h2>
+<p>EC2 Auto Scaling Warm Pools are a set of pre-intiallised instances that an autoscaling group can maintain to reduce the latency incurred through long boostrap processes.  When a scale out action occurs, the autoscaling group has the ability to draw from the already bootstrapped instance capacity in the Warm Pool rather than launching a fresh new instance incurring bootstrap time.</p>
+<h2 id="why-would-you-use-autoscaling-warm-pools">Why would you use Autoscaling Warm Pools?</h2>
+<p>Warm pools are super useful when you have a significant amount of bootstrapping time usually attibuted to bespoke configuration requirements of instances launched into an Autoscaling Group.  Additionally using third party AMIs or image building solutions has the overeheads that someone needs to own any bespoke configuration as you build out more diverse AMIs rather just sticking to hardened standard operating environments or golden images.  This becomes even more of a burden when the application team is a third party with an ops team in house.  On top of the obvious benefit of faster scale-out times there is also the added benefit of cost reductions.  When instances enter a warm pool they can be placed into one of three states: Warmed:Stopped, Warmed:Hibernated and Warmed:Running.  So for example by keeping warm pool instances in Warmed:Stopped you can effective minimise costs.  In this state you only pay for the volumes used, elastic ips associated etc. So when you keep your instances stopped or hibernated your saving on the cost of the instances themselves.</p>
+<h2 id="how-do-autoscaling-group-lifecycle-hooks-work-when-using-warm-pools">How do Autoscaling Group Lifecycle Hooks work when using Warm Pools</h2>
+<p>So I learnt there is abit of a gotcha or side affect by design of Warm Pools, when it comes to using them alongside existing Lifecycle hooks to do bootstrapping of an application on EC2 instance launch.</p>
+<p>Lets take a couple of example scenarios&hellip;</p>
+<h3 id="scenario-1---a-standard-autocaling-group-with-lifecycle-hook-applied-on-ec2_instance_launching">Scenario 1 - A Standard Autocaling group with Lifecycle Hook applied on EC2_INSTANCE_LAUNCHING:</h3>
+<p>In a standard autoscaling group with a Lifecycle Hook applied on EC2_INSTANCE_LAUNCHING scale out. The instance first moves into Pending:Wait state, whereby it will remain in the Pending:Wait state whilst you bootstrap or configure your instance using automation usually in the form of UserData scripts or SSM automations.  As such the final step in your automation following the instance bootstrap will be to call the complete-lifecycle-action API to continue or complete the lifecycle action.  The autoscaling group then continues moving the instance into InService within the autoscaling group ready to serve client requests.</p>
+<p><img loading="lazy" src="/img/lifecycle_hooks.png" alt="Standard Lifecycle Hooks"  title="Standard Lifecycle Hooks"  />
+</p>
+<h3 id="scenario-2---an-autoscaling-group-with-an-existing-lifecycle-hook-applied-on-ec2_instance_launching-alongside-a-warm-pool">Scenario 2 - An Autoscaling group with an existing Lifecycle Hook applied on EC2_INSTANCE_LAUNCHING alongside a Warm Pool</h3>
+<p>For an autoscaling group taking advantage of Warmpools alongside an existing EC2_INSTANCE_LAUNCHING Lifecycle Hook. You need to factor in that an instance will enter into a Pending:Wait state twice triggering the Lifecycle Hook <strong>twice</strong>.<br>
+<img loading="lazy" src="/img/warm-pools-lifecycle-hooks.png" alt="Lifecycle Hooks with Warm Pools"  title="Lifecycle Hooks with Warm Pools"  />
+</p>
+<ol>
+<li>The first time its triggered when the instance is started / launched and bootstrapped with automation UserData scripts or SSM whilst in the Warmed:Pending:Wait.  The automation finalise with the first complete-lifecycle-action API call to move the instance into Warm Pool Warmed:Running, Warmed:Stopped or Warmed:Hibernated within the Warm Pool.</li>
+<li>Then again on Scale Out of the autoscaling group when the instances move from the Warm pool into the ASG they goes into Pending, Pending Wait and then ONLY after the complete-lifecycle-action API has been called again does the instance move to Inservice.</li>
+</ol>
+<h2 id="so-whats-the-solution">So whats the solution?</h2>
+<h2 id="you-guessed-it-more-automation">You guessed it, more automation!</h2>
+<p>The easiest way to solve this potentially undesirable behavior of your UserData or your SSM automation having to deal with calling the complete-lifecycle-action twice can easily be solved with a Lambda function thats triggered through a Cloudwatch EventBridge Rule.  EC2 Auto Scaling like other AWS services supports publishing its lifecycle events directly to Cloudwatch EventBridge.  As such its possible to create an EventBridge rule that filters for Warm Pool related events for example based on the instances Origin Warm Pool and Destination autoscaling group.  The rule then triggers a Lambda function which calls the complete-lifecycle-action API to continue for the second time without your UserData or SSM automation scripts having to factor this in.  I&rsquo;ll cover this Lifecycle hook automation along with overall Warm Pools in a example CDK as a follow up to this post.</p>
+<h2 id="other-useful-references">Other useful references:</h2>
+<p>Warm Pools
+<a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html">https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html</a>
+<a href="https://aws.amazon.com/blogs/compute/scaling-your-applications-faster-with-ec2-auto-scaling-warm-pools/">https://aws.amazon.com/blogs/compute/scaling-your-applications-faster-with-ec2-auto-scaling-warm-pools/</a></p>
+<p>EC2 Autoscaling Lifecycle Hooks
+<a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks-overview.html">https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks-overview.html</a></p>
+<p>Lifecycle Hooks with Warm Pools
+<a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/warm-pool-instance-lifecycle.html">https://docs.aws.amazon.com/autoscaling/ec2/userguide/warm-pool-instance-lifecycle.html</a></p>
+<p>Warm Pool Patterns for Event Bridge
+<a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/warm-pools-eventbridge-events.html">https://docs.aws.amazon.com/autoscaling/ec2/userguide/warm-pools-eventbridge-events.html</a></p>
+]]></content:encoded>
     </item>
     
     <item>
@@ -28,6 +68,15 @@
       
       <guid>https://blog.toddaas.com/posts/leaning_towards_dev_ops/</guid>
       <description>Starting this year I made it key goal of mine to actively build upon whatever dev knowledge I still remember from my bachelors about 10 years ago. Of course the dev mindset is still kinda there. I started my professional endeavors in the jack of all trades infrastructure engineering space following my IT degree. With a small focus on the networking side of things. During my work I&amp;rsquo;ve always adopted the DRY mantra.</description>
+      <content:encoded><![CDATA[<p>Starting this year I made it key goal of mine to actively build upon whatever dev knowledge I still remember from my bachelors about 10 years ago.  Of course the dev mindset is still kinda there.  I started my professional endeavors in the jack of all trades infrastructure engineering space following my IT degree.  With a small focus on the networking side of things.  During my work I&rsquo;ve always adopted the DRY mantra.  I&rsquo;m  scripting where I can in Python, Powershell, Bash etc to enable me to move onto more rewarding tasks.  By adopting this mindset of automating the more mundane tasks required of a (cloud) infrastructure engineer, its definitely bought me some personal time along the way.</p>
+<p>Moving onto the motivation behind this set of dev transformational posts.  As I&rsquo;ve increased my knowledge of AWS in the past few years, mainly due to my day to day work involving supporting the cloud networks of Business and Enterprise customers from around the world.  I&rsquo;ve found a whole heap of our customer interactions are with mainly developers or what I would dub full stack engineers not strictly developers.</p>
+<p>As such to compliment this point I my career, I&rsquo;ve decided Im going to focus on a developer aimed certification the AWS Developer Associate (DVA-C01) which incorporates the networking services I know well and those dev related services I&rsquo;m not 100% at or have never applied.</p>
+<p>As part of this series of posts I&rsquo;m going to see how I go at honing my development skills as a full stack engineer.  By doing so Im hoping to build upon the foundational knowledge required for me to take the AWS Developer Associate certification (DVA-C01).  In turn I&rsquo;m hoping to transform a simple web application in terms of the modern developer stacks, I keep hearing about.  React event driven Single Page Web Application (SPAs) with restful APIs (API Gateway) backed by containerised (EKS) micro services and NoSQL databases (DynamoDB) seem to be all the rage.</p>
+<p>So to start things off, over the course of the past couple of weeks.  I&rsquo;ve put together a simple monolithic Flask based photo sharing social media application, styled with a small amount of Skeleton CSS. I&rsquo;ve named it TODDaaSagram.  Its bare bones and probably horribly coded by any seasoned developer standard.  That said its a decent foundation for me to build upon to explore and incorporate some of the aforementioned developer technologies.  At the same time I&rsquo;m hoping to apply some of the creatively that I bring to the table.  I definitely see creativity is more free flowing from the developer side of the equation, than the infrastructure the side so this will be part of the experiment.</p>
+<p><img loading="lazy" src="/img/toddaas-social-1.gif" alt="toddaas-social-1"  />
+</p>
+<p>You can find the application code via my github repo <a href="https://github.com/toddsfish/toddaas-social">https://github.com/toddsfish/toddaas-social</a></p>
+]]></content:encoded>
     </item>
     
     <item>
@@ -37,6 +86,8 @@
       
       <guid>https://blog.toddaas.com/disclaimer/</guid>
       <description>📌The opinions on this blog are my own and not that of my employer.</description>
+      <content:encoded><![CDATA[<p>📌The opinions on this blog are my own and not that of my employer.</p>
+]]></content:encoded>
     </item>
     
   </channel>
