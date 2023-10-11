@@ -31,7 +31,7 @@ For an autoscaling group taking advantage of Warmpools alongside an existing EC2
 ![Lifecycle Hooks with Warm Pools](/img/warm-pools-lifecycle-hooks.png "Lifecycle Hooks with Warm Pools")
 1. The first time you must triger complete-lifecycle-action is when the instance is initially started / launched into an ASG.  Usually this is when the instance is bootstrapped with automation UserData scripts or SSM automation whilst in the Warmed:Pending:Wait.  The automation finalises with the first complete-lifecycle-action API call to move the instance into Warm Pool Warmed:Running, Warmed:Stopped or Warmed:Hibernated within the Warm Pool.
 2. Then you must also call complete-lifecycle-action again on any Scale Out of the autoscaling group when the instances move from a Warm pool into the ASG they goes into Pending, Pending Wait.  Then ONLY after the complete-lifecycle-action API has been called the second time does the instance move to Inservice within the autoscaling group.
-Is this a bug or just the default behavior when using warm pools?  My guess it has to do with the existing state machine that governs autoscaling service control plane prior to this features launch.
+Is this a bug or just the default behavior when using warm pools?  My guess it has to do with the existing state machine that governs the autoscaling service control plane prior to the launch of this feature.
 
 ## So whats the solution?
 ## You guessed it, more automation!
