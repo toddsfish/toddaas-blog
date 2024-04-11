@@ -17,7 +17,7 @@ tags:
     'firewalls',
     'cloud development kit',
     'autoscaling warm pools',
-    'warm pool',
+    'warmpools',
     'cdk construct',
     'construct hub',
   ]
