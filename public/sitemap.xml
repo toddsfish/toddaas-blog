@@ -3,45 +3,69 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://blog.toddaas.com/tags/automation/</loc>
-    <lastmod>2023-08-08T05:10:21+10:00</lastmod>
+    <lastmod>2024-04-04T05:10:21+10:00</lastmod>
   </url><url>
     <loc>https://blog.toddaas.com/tags/autoscaling/</loc>
-    <lastmod>2023-08-08T05:10:21+10:00</lastmod>
+    <lastmod>2024-04-04T05:10:21+10:00</lastmod>
+  </url><url>
+    <loc>https://blog.toddaas.com/tags/autoscaling-warm-pools/</loc>
+    <lastmod>2024-04-04T05:10:21+10:00</lastmod>
   </url><url>
     <loc>https://blog.toddaas.com/tags/aws/</loc>
-    <lastmod>2023-08-08T05:10:21+10:00</lastmod>
+    <lastmod>2024-04-04T05:10:21+10:00</lastmod>
   </url><url>
     <loc>https://blog.toddaas.com/tags/cdk/</loc>
-    <lastmod>2023-08-08T05:10:21+10:00</lastmod>
+    <lastmod>2024-04-04T05:10:21+10:00</lastmod>
+  </url><url>
+    <loc>https://blog.toddaas.com/tags/cdk-construct/</loc>
+    <lastmod>2024-04-04T05:10:21+10:00</lastmod>
+  </url><url>
+    <loc>https://blog.toddaas.com/tags/cloud-development-kit/</loc>
+    <lastmod>2024-04-04T05:10:21+10:00</lastmod>
+  </url><url>
+    <loc>https://blog.toddaas.com/tags/construct-hub/</loc>
+    <lastmod>2024-04-04T05:10:21+10:00</lastmod>
   </url><url>
     <loc>https://blog.toddaas.com/tags/ec2/</loc>
-    <lastmod>2023-08-08T05:10:21+10:00</lastmod>
+    <lastmod>2024-04-04T05:10:21+10:00</lastmod>
   </url><url>
     <loc>https://blog.toddaas.com/tags/ec2-autoscaling/</loc>
-    <lastmod>2023-08-08T05:10:21+10:00</lastmod>
+    <lastmod>2024-04-04T05:10:21+10:00</lastmod>
   </url><url>
-    <loc>https://blog.toddaas.com/posts/ec2_warm_pools_are_useful_part_1/</loc>
-    <lastmod>2023-08-08T05:10:21+10:00</lastmod>
+    <loc>https://blog.toddaas.com/posts/ec2_warm_pools_are_useful_part_2/</loc>
+    <lastmod>2024-04-04T05:10:21+10:00</lastmod>
   </url><url>
     <loc>https://blog.toddaas.com/tags/eventbridge/</loc>
-    <lastmod>2023-08-08T05:10:21+10:00</lastmod>
+    <lastmod>2024-04-04T05:10:21+10:00</lastmod>
+  </url><url>
+    <loc>https://blog.toddaas.com/tags/firewalls/</loc>
+    <lastmod>2024-04-04T05:10:21+10:00</lastmod>
+  </url><url>
+    <loc>https://blog.toddaas.com/tags/gateway-load-balancer/</loc>
+    <lastmod>2024-04-04T05:10:21+10:00</lastmod>
   </url><url>
     <loc>https://blog.toddaas.com/tags/lambda/</loc>
-    <lastmod>2023-08-08T05:10:21+10:00</lastmod>
+    <lastmod>2024-04-04T05:10:21+10:00</lastmod>
   </url><url>
     <loc>https://blog.toddaas.com/tags/lambda-function/</loc>
-    <lastmod>2023-08-08T05:10:21+10:00</lastmod>
+    <lastmod>2024-04-04T05:10:21+10:00</lastmod>
   </url><url>
     <loc>https://blog.toddaas.com/posts/</loc>
-    <lastmod>2023-08-08T05:10:21+10:00</lastmod>
+    <lastmod>2024-04-04T05:10:21+10:00</lastmod>
   </url><url>
     <loc>https://blog.toddaas.com/tags/serverless/</loc>
-    <lastmod>2023-08-08T05:10:21+10:00</lastmod>
+    <lastmod>2024-04-04T05:10:21+10:00</lastmod>
   </url><url>
     <loc>https://blog.toddaas.com/tags/</loc>
-    <lastmod>2023-08-08T05:10:21+10:00</lastmod>
+    <lastmod>2024-04-04T05:10:21+10:00</lastmod>
   </url><url>
     <loc>https://blog.toddaas.com/</loc>
+    <lastmod>2024-04-04T05:10:21+10:00</lastmod>
+  </url><url>
+    <loc>https://blog.toddaas.com/tags/warm-pool/</loc>
+    <lastmod>2024-04-04T05:10:21+10:00</lastmod>
+  </url><url>
+    <loc>https://blog.toddaas.com/posts/ec2_warm_pools_are_useful_part_1/</loc>
     <lastmod>2023-08-08T05:10:21+10:00</lastmod>
   </url><url>
     <loc>https://blog.toddaas.com/tags/dev/</loc>
