@@ -1,7 +1,7 @@
 baseURL: "https://blog.toddaas.com/"
 title: toddaas blog
 paginate: 5
-theme: PaperMod
+theme: ["PaperMod"]
 
 enableRobotsTXT: true
 buildDrafts: false
@@ -54,7 +54,7 @@ params:
     profileMode:
         enabled: true # needs to be explicitly set
         title: "Todd Bryant"
-        subtitle: "A cloud architect based in Northern NSW, Australia. Not far from the Goldy.."
+        subtitle: "Cloud Architect based on the Gold Coast, Australia."
         imageUrl: "/img/570243.jpg"
         imageWidth: 120
         imageHeight: 120
@@ -64,7 +64,7 @@ params:
     # home-info mode
     homeInfoParams:
         Title: "Gday, \U0001F44B"
-        Content: Welcome to the learnings of a cloud (network) engineer based on the Gold Coast, Australia.
+        Content: ""
 
     socialIcons:
         - name: linkedin
