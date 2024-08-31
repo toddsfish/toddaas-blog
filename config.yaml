@@ -54,7 +54,7 @@ params:
     profileMode:
         enabled: true # needs to be explicitly set
         title: "Todd Bryant"
-        subtitle: "Cloud Architect based on the Gold Coast, Australia."
+        subtitle: "A Cloud Architect based on the Gold Coast, Australia."
         imageUrl: "/img/570243.jpg"
         imageWidth: 120
         imageHeight: 120
