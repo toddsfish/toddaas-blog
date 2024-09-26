@@ -67,10 +67,16 @@ params:
         Content: ""
 
     socialIcons:
+        - name: email
+          url: "mailto:hello@toddaas.com"
         - name: linkedin
           url: "https://www.linkedin.com/in/bryanttodd/"
         - name: github
           url: "https://github.com/toddsfish"
+        - name: other
+          url: "https://toddaas-aueast-prod-shaarli.azurewebsites.net/"
+        - name: rss
+          url: "https://blog.toddaas.com/index.xml"
 
     analytics:
         google:
