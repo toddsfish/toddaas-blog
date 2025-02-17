@@ -18,6 +18,7 @@ params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: toddaas
   description: "toddaas"
+  social: true
   keywords:
     [
       blog,
