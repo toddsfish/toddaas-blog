@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Flask on toddaas blog</title>
-    <link>https://blog.toddaas.com/tags/flask/</link>
+    <link>http://localhost:1313/tags/flask/</link>
     <description>Recent content in Flask on toddaas blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <image>
+      <title>toddaas blog</title>
+      <url>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.123.7</generator>
     <language>en</language>
     <lastBuildDate>Wed, 07 Apr 2021 05:10:21 +1000</lastBuildDate>
-    <atom:link href="https://blog.toddaas.com/tags/flask/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/flask/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Leaning towards dev(ops)</title>
-      <link>https://blog.toddaas.com/posts/leaning_towards_dev_ops/</link>
+      <link>http://localhost:1313/posts/leaning_towards_dev_ops/</link>
       <pubDate>Wed, 07 Apr 2021 05:10:21 +1000</pubDate>
-      <guid>https://blog.toddaas.com/posts/leaning_towards_dev_ops/</guid>
+      <guid>http://localhost:1313/posts/leaning_towards_dev_ops/</guid>
       <description>Starting this year I made it key goal of mine to actively build upon whatever dev knowledge I still remember from my bachelors about 10 years ago. Of course the dev mindset is still kinda there. I started my professional endeavors in the jack of all trades infrastructure engineering space following my IT degree. With a small focus on the networking side of things. During my work I&amp;rsquo;ve always adopted the DRY mantra.</description>
+      <content:encoded><![CDATA[<p>Starting this year I made it key goal of mine to actively build upon whatever dev knowledge I still remember from my bachelors about 10 years ago.  Of course the dev mindset is still kinda there.  I started my professional endeavors in the jack of all trades infrastructure engineering space following my IT degree.  With a small focus on the networking side of things.  During my work I&rsquo;ve always adopted the DRY mantra.  I&rsquo;m  scripting where I can in Python, Powershell, Bash etc to enable me to move onto more rewarding tasks.  By adopting this mindset of automating the more mundane tasks required of a (cloud) infrastructure engineer, its definitely bought me some personal time along the way.</p>
+<p>Moving onto the motivation behind this set of dev transformational posts.  As I&rsquo;ve increased my knowledge of AWS in the past few years, mainly due to my day to day work involving supporting the cloud networks of Business and Enterprise customers from around the world.  I&rsquo;ve found a whole heap of our customer interactions are with mainly developers or what I would dub full stack engineers not strictly developers.</p>
+<p>As such to compliment this point I my career, I&rsquo;ve decided Im going to focus on a developer aimed certification the AWS Developer Associate (DVA-C01) which incorporates the networking services I know well and those dev related services I&rsquo;m not 100% at or have never applied.</p>
+<p>As part of this series of posts I&rsquo;m going to see how I go at honing my development skills as a full stack engineer.  By doing so Im hoping to build upon the foundational knowledge required for me to take the AWS Developer Associate certification (DVA-C01).  In turn I&rsquo;m hoping to transform a simple web application in terms of the modern developer stacks, I keep hearing about.  React event driven Single Page Web Application (SPAs) with restful APIs (API Gateway) backed by containerised (EKS) micro services and NoSQL databases (DynamoDB) seem to be all the rage.</p>
+<p>So to start things off, over the course of the past couple of weeks.  I&rsquo;ve put together a simple monolithic Flask based photo sharing social media application, styled with a small amount of Skeleton CSS. I&rsquo;ve named it TODDaaSagram.  Its bare bones and probably horribly coded by any seasoned developer standard.  That said its a decent foundation for me to build upon to explore and incorporate some of the aforementioned developer technologies.  At the same time I&rsquo;m hoping to apply some of the creatively that I bring to the table.  I definitely see creativity is more free flowing from the developer side of the equation, than the infrastructure the side so this will be part of the experiment.</p>
+<p><img loading="lazy" src="/img/toddaas-social-1.gif" alt="toddaas-social-1"  />
+</p>
+<p>You can find the application code via my github repo <a href="https://github.com/toddsfish/toddaas-social">https://github.com/toddsfish/toddaas-social</a></p>
+]]></content:encoded>
     </item>
   </channel>
 </rss>

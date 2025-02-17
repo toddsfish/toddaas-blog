@@ -1,19 +1,45 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Cloud Development Kit on toddaas blog</title>
-    <link>https://blog.toddaas.com/tags/cloud-development-kit/</link>
+    <link>http://localhost:1313/tags/cloud-development-kit/</link>
     <description>Recent content in Cloud Development Kit on toddaas blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <image>
+      <title>toddaas blog</title>
+      <url>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.123.7</generator>
     <language>en</language>
     <lastBuildDate>Thu, 04 Apr 2024 05:10:21 +1000</lastBuildDate>
-    <atom:link href="https://blog.toddaas.com/tags/cloud-development-kit/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/cloud-development-kit/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>EC2 Autoscaling Warm Pools are very useful for looooooooong bootstrap times - Part 2</title>
-      <link>https://blog.toddaas.com/posts/ec2_warm_pools_are_useful_part_2/</link>
+      <link>http://localhost:1313/posts/ec2_warm_pools_are_useful_part_2/</link>
       <pubDate>Thu, 04 Apr 2024 05:10:21 +1000</pubDate>
-      <guid>https://blog.toddaas.com/posts/ec2_warm_pools_are_useful_part_2/</guid>
-      <description>Overdue for Part 2 so thought I&amp;rsquo;d include some of my learnings along the way&amp;hellip;&#xA;Why Warm Pools again? Taking a step back to networking for a brief second and Warm pools from Part 1. Warm Pools are very useful for scaling network appliances, for example, a set of firewall appliances in an Autoscaling Group behind a Gateway Load Balancer (GWLB). This is simply because notoriously network appliances often take a long time to boot getting all their bootstrapping and inspection, IPS/IDS jazz together.</description>
+      <guid>http://localhost:1313/posts/ec2_warm_pools_are_useful_part_2/</guid>
+      <description>Overdue for Part 2 so thought I&amp;rsquo;d include some of my learnings along the way&amp;hellip;
+Why Warm Pools again? Taking a step back to networking for a brief second and Warm pools from Part 1. Warm Pools are very useful for scaling network appliances, for example, a set of firewall appliances in an Autoscaling Group behind a Gateway Load Balancer (GWLB). This is simply because notoriously network appliances often take a long time to boot getting all their bootstrapping and inspection, IPS/IDS jazz together.</description>
+      <content:encoded><![CDATA[<p>Overdue for Part 2 so thought I&rsquo;d include some of my learnings along the way&hellip;</p>
+<h2 id="why-warm-pools-again">Why Warm Pools again?</h2>
+<p>Taking a step back to networking for a brief second and Warm pools from <a href="http://localhost:1313/posts/ec2_warm_pools_are_useful_part_1/">Part 1</a>. Warm Pools are very useful for scaling network appliances, for example, a set of firewall appliances in an Autoscaling Group behind a Gateway Load Balancer (GWLB). This is simply because notoriously network appliances often take a long time to boot getting all their bootstrapping and inspection, IPS/IDS jazz together. Therefore, by using Warm pools, a network appliance can be quickly placed in service in the Autoscaling Group, without the necessity of overprovisioning the Autoscaling Group with running instances incurring unnecessary costs. With that said, if you&rsquo;re using Warm pools alongside Lifecycle Hooks you need to take into account the additional overheads of automation to move instances from the Warm pool to the Autoscaling Group. This post covers the CDK Construct I wrote for Warm pools to extend the existing functionality of the default <a href="https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_autoscaling.WarmPool.html">CDK WarmPool class</a> to support this required automation for use with future Autoscaling Groups backed by Firewall appliances or EC2 instances using Lifecycle Hooks. CDK constructs allow you to abstract, reuse, repeat.</p>
+<h2 id="cdk-constructs">CDK Constructs</h2>
+<p>I&rsquo;ve been using the AWS Cloud Development Kit (CDK) for a few years now since version 1 (now version 2), predominantly for proof of concepts, testing AWS services, and as part of automating my troubleshooting workflow in replicating customer environments. Mainly the constructs I&rsquo;ve been using are the AWS service constructs. That said, as I&rsquo;ve gotten into using the CDK more and more, I&rsquo;ve found myself using other Construct libraries which speed up the implementation of existing best practice patterns <a href="https://docs.aws.amazon.com/solutions/latest/constructs/welcome.html">practice patterns</a> or just mashing together AWS service constructs with abstractions though Open Source constructs available via <a href="https://constructs.dev/">Construct Hub</a>. CDK&rsquo;s ability to share abstractions of cloud infrastructure underpinned by a modern programming language is what makes it great. AWS has also open-sourced the Construct Hub <a href="https://github.com/cdklabs/construct-hub">here</a> itself, for the use case of a private construct library within an organization to share reusable IaC constructs and patterns.</p>
+<p>Now onto the CDK constructs, when it comes to the AWS service Level 2 (L2) constructs whilst they are supposed to operate at a higher level of abstraction, i.e., not require initialization of the same properties of a CFN resource. L2 constructs do not cater to all usage scenarios. This means that at times they often represent resources similar to the lowest level abstraction of Level (L1) constructs, basically the raw CFN resources and resource properties. This is where the composition over inheritance principle with CDK allows you to extend an existing CDK construct&rsquo;s functionality to include other constructs and cater to custom use cases. For example, in automating Autoscaling groups using Warm pools to move instances from the Warm pool into service automatically, something which the default L2 <a href="https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_autoscaling.WarmPool.html">CDK WarmPool class</a> does not do by default.</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/pnFisVo40nk" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<h2 id="projen">Projen</h2>
+<p>What I discovered along the way when wanting to share my construct with the CDK community, is that there is some barrier to entry (contribute) when it comes to meeting the requirements to have a CDK Construct in Construct Hub. To add, it was a manual process to release changes or updates to my construct whilst meeting these requirements and then push these changes to NPM, which are synced to Construct Hub. This is where a tool called Projen <a href="https://projen.io/">here</a> helped a lot. Projen does a lot of the heavy lifting required in terms of scaffolding a consumable CDK construct or any other supported project. This includes generating CI/CD pipelines based around Conventional Commits <a href="https://www.conventionalcommits.org/en/v1.0.0/">here</a> in the form of Github Actions workflows. For example, a release workflow for validating a CDK construct and releasing the construct to the NPM public repositories, conforming to Construct Hub <a href="https://constructs.dev/contribute">requirements</a>. Projen also has a workflow for keeping any code dependencies nicely updated automatically through PRs on the repository.</p>
+<h2 id="my-warm-pool-cdk-construct">My Warm Pool CDK Construct</h2>
+<p>So how does my Warm pools construct work, what does it do? Essentially, the construct extends <a href="https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_autoscaling.WarmPool.html">CDK WarmPool class</a> with a Lambda function that&rsquo;s triggered through a CloudWatch EventBridge Rule when an instance moves out of a Warm Pool. EC2 Autoscaling, like most AWS services, publishes its events to CloudWatch EventBridge. As such, it&rsquo;s simple to create an EventBridge rule that filters for Warm Pool origin-related events based on the autoscaling group, then trigger the Lambda, calling complete-lifecycle-action and placing the instance in service.</p>
+<p><a href="https://constructs.dev/packages/@pandanus-cloud/cdk-autoscaling-warmpool"><img loading="lazy" src="https://constructs.dev/badge?package=%40pandanus-cloud%2Fcdk-autoscaling-warmpool" alt="View on Construct Hub"  />
+</a></p>
+<h2 id="a-cdk-app-example">A CDK App Example</h2>
+<p>Here&rsquo;s a simple CDK app using the my Warm Pool Construct <a href="https://github.com/toddsfish/warmpools-test">https://github.com/toddsfish/warmpools-test</a>. You can also use this example CDK app if you just want to play around with the behavior of Autoscaling Warm Pools in general.</p>
+]]></content:encoded>
     </item>
   </channel>
 </rss>

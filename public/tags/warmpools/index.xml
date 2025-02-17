@@ -1,26 +1,93 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Warmpools on toddaas blog</title>
-    <link>https://blog.toddaas.com/tags/warmpools/</link>
+    <link>http://localhost:1313/tags/warmpools/</link>
     <description>Recent content in Warmpools on toddaas blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <image>
+      <title>toddaas blog</title>
+      <url>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.123.7</generator>
     <language>en</language>
     <lastBuildDate>Thu, 04 Apr 2024 05:10:21 +1000</lastBuildDate>
-    <atom:link href="https://blog.toddaas.com/tags/warmpools/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/warmpools/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>EC2 Autoscaling Warm Pools are very useful for looooooooong bootstrap times - Part 2</title>
-      <link>https://blog.toddaas.com/posts/ec2_warm_pools_are_useful_part_2/</link>
+      <link>http://localhost:1313/posts/ec2_warm_pools_are_useful_part_2/</link>
       <pubDate>Thu, 04 Apr 2024 05:10:21 +1000</pubDate>
-      <guid>https://blog.toddaas.com/posts/ec2_warm_pools_are_useful_part_2/</guid>
-      <description>Overdue for Part 2 so thought I&amp;rsquo;d include some of my learnings along the way&amp;hellip;&#xA;Why Warm Pools again? Taking a step back to networking for a brief second and Warm pools from Part 1. Warm Pools are very useful for scaling network appliances, for example, a set of firewall appliances in an Autoscaling Group behind a Gateway Load Balancer (GWLB). This is simply because notoriously network appliances often take a long time to boot getting all their bootstrapping and inspection, IPS/IDS jazz together.</description>
+      <guid>http://localhost:1313/posts/ec2_warm_pools_are_useful_part_2/</guid>
+      <description>Overdue for Part 2 so thought I&amp;rsquo;d include some of my learnings along the way&amp;hellip;
+Why Warm Pools again? Taking a step back to networking for a brief second and Warm pools from Part 1. Warm Pools are very useful for scaling network appliances, for example, a set of firewall appliances in an Autoscaling Group behind a Gateway Load Balancer (GWLB). This is simply because notoriously network appliances often take a long time to boot getting all their bootstrapping and inspection, IPS/IDS jazz together.</description>
+      <content:encoded><![CDATA[<p>Overdue for Part 2 so thought I&rsquo;d include some of my learnings along the way&hellip;</p>
+<h2 id="why-warm-pools-again">Why Warm Pools again?</h2>
+<p>Taking a step back to networking for a brief second and Warm pools from <a href="http://localhost:1313/posts/ec2_warm_pools_are_useful_part_1/">Part 1</a>. Warm Pools are very useful for scaling network appliances, for example, a set of firewall appliances in an Autoscaling Group behind a Gateway Load Balancer (GWLB). This is simply because notoriously network appliances often take a long time to boot getting all their bootstrapping and inspection, IPS/IDS jazz together. Therefore, by using Warm pools, a network appliance can be quickly placed in service in the Autoscaling Group, without the necessity of overprovisioning the Autoscaling Group with running instances incurring unnecessary costs. With that said, if you&rsquo;re using Warm pools alongside Lifecycle Hooks you need to take into account the additional overheads of automation to move instances from the Warm pool to the Autoscaling Group. This post covers the CDK Construct I wrote for Warm pools to extend the existing functionality of the default <a href="https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_autoscaling.WarmPool.html">CDK WarmPool class</a> to support this required automation for use with future Autoscaling Groups backed by Firewall appliances or EC2 instances using Lifecycle Hooks. CDK constructs allow you to abstract, reuse, repeat.</p>
+<h2 id="cdk-constructs">CDK Constructs</h2>
+<p>I&rsquo;ve been using the AWS Cloud Development Kit (CDK) for a few years now since version 1 (now version 2), predominantly for proof of concepts, testing AWS services, and as part of automating my troubleshooting workflow in replicating customer environments. Mainly the constructs I&rsquo;ve been using are the AWS service constructs. That said, as I&rsquo;ve gotten into using the CDK more and more, I&rsquo;ve found myself using other Construct libraries which speed up the implementation of existing best practice patterns <a href="https://docs.aws.amazon.com/solutions/latest/constructs/welcome.html">practice patterns</a> or just mashing together AWS service constructs with abstractions though Open Source constructs available via <a href="https://constructs.dev/">Construct Hub</a>. CDK&rsquo;s ability to share abstractions of cloud infrastructure underpinned by a modern programming language is what makes it great. AWS has also open-sourced the Construct Hub <a href="https://github.com/cdklabs/construct-hub">here</a> itself, for the use case of a private construct library within an organization to share reusable IaC constructs and patterns.</p>
+<p>Now onto the CDK constructs, when it comes to the AWS service Level 2 (L2) constructs whilst they are supposed to operate at a higher level of abstraction, i.e., not require initialization of the same properties of a CFN resource. L2 constructs do not cater to all usage scenarios. This means that at times they often represent resources similar to the lowest level abstraction of Level (L1) constructs, basically the raw CFN resources and resource properties. This is where the composition over inheritance principle with CDK allows you to extend an existing CDK construct&rsquo;s functionality to include other constructs and cater to custom use cases. For example, in automating Autoscaling groups using Warm pools to move instances from the Warm pool into service automatically, something which the default L2 <a href="https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_autoscaling.WarmPool.html">CDK WarmPool class</a> does not do by default.</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/pnFisVo40nk" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<h2 id="projen">Projen</h2>
+<p>What I discovered along the way when wanting to share my construct with the CDK community, is that there is some barrier to entry (contribute) when it comes to meeting the requirements to have a CDK Construct in Construct Hub. To add, it was a manual process to release changes or updates to my construct whilst meeting these requirements and then push these changes to NPM, which are synced to Construct Hub. This is where a tool called Projen <a href="https://projen.io/">here</a> helped a lot. Projen does a lot of the heavy lifting required in terms of scaffolding a consumable CDK construct or any other supported project. This includes generating CI/CD pipelines based around Conventional Commits <a href="https://www.conventionalcommits.org/en/v1.0.0/">here</a> in the form of Github Actions workflows. For example, a release workflow for validating a CDK construct and releasing the construct to the NPM public repositories, conforming to Construct Hub <a href="https://constructs.dev/contribute">requirements</a>. Projen also has a workflow for keeping any code dependencies nicely updated automatically through PRs on the repository.</p>
+<h2 id="my-warm-pool-cdk-construct">My Warm Pool CDK Construct</h2>
+<p>So how does my Warm pools construct work, what does it do? Essentially, the construct extends <a href="https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_autoscaling.WarmPool.html">CDK WarmPool class</a> with a Lambda function that&rsquo;s triggered through a CloudWatch EventBridge Rule when an instance moves out of a Warm Pool. EC2 Autoscaling, like most AWS services, publishes its events to CloudWatch EventBridge. As such, it&rsquo;s simple to create an EventBridge rule that filters for Warm Pool origin-related events based on the autoscaling group, then trigger the Lambda, calling complete-lifecycle-action and placing the instance in service.</p>
+<p><a href="https://constructs.dev/packages/@pandanus-cloud/cdk-autoscaling-warmpool"><img loading="lazy" src="https://constructs.dev/badge?package=%40pandanus-cloud%2Fcdk-autoscaling-warmpool" alt="View on Construct Hub"  />
+</a></p>
+<h2 id="a-cdk-app-example">A CDK App Example</h2>
+<p>Here&rsquo;s a simple CDK app using the my Warm Pool Construct <a href="https://github.com/toddsfish/warmpools-test">https://github.com/toddsfish/warmpools-test</a>. You can also use this example CDK app if you just want to play around with the behavior of Autoscaling Warm Pools in general.</p>
+]]></content:encoded>
     </item>
     <item>
       <title>EC2 Autoscaling Warm Pools are very useful for looooooooong bootstrap times - Part 1</title>
-      <link>https://blog.toddaas.com/posts/ec2_warm_pools_are_useful_part_1/</link>
+      <link>http://localhost:1313/posts/ec2_warm_pools_are_useful_part_1/</link>
       <pubDate>Tue, 08 Aug 2023 05:10:21 +1000</pubDate>
-      <guid>https://blog.toddaas.com/posts/ec2_warm_pools_are_useful_part_1/</guid>
+      <guid>http://localhost:1313/posts/ec2_warm_pools_are_useful_part_1/</guid>
       <description>So whats the scenario? I came up against conflicting customer requirements of minimising the impact of long application bootstrap times in an autoscaling group partnered along side the requirement of keeping their standard barebones EC2 AMIs interchangable. Essentially the customer did not want to have to deal with the bloat or overheads of maintaining a specific prebaked application AMI alongside an image building solution like EC2 Image Builder or a third party solution like Hashicorp Packer.</description>
+      <content:encoded><![CDATA[<h2 id="so-whats-the-scenario">So whats the scenario?</h2>
+<p>I came up against conflicting customer requirements of minimising the impact of long application bootstrap times in an autoscaling group partnered along side the requirement of keeping their standard barebones EC2 AMIs interchangable. Essentially the customer did not want to have to deal with the bloat or overheads of maintaining a specific prebaked application AMI alongside an image building solution like EC2 Image Builder or a third party solution like Hashicorp Packer. Enter EC2 Autoscaling Warm Pools&hellip;</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/Q6TLWqn82J4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<h2 id="what-are-ec2-autoscaling-warm-pools">What are EC2 Autoscaling Warm Pools?</h2>
+<p>EC2 Auto Scaling Warm Pools are a set of pre-intiallised instances that an autoscaling group can maintain to reduce the latency incurred through long boostrap processes. When a scale out action occurs, the autoscaling group has the ability to draw from the already bootstrapped instance capacity in the Warm Pool rather than launching a fresh new instance incurring bootstrap time.</p>
+<h2 id="why-would-you-use-autoscaling-warm-pools">Why would you use Autoscaling Warm Pools?</h2>
+<p>Warm pools are super useful when you have a significant amount of bootstrapping time usually attibuted to bespoke configuration requirements of instances launched into an Autoscaling Group. Additionally using third party AMIs or image building solutions has the overeheads that someone needs to own any bespoke configuration as you build out more diverse AMIs rather just sticking to hardened standard operating environments or golden images. This becomes even more of a burden when the application team is a third party with an ops team in house. On top of the obvious benefit of faster scale-out times there is also the added benefit of cost reductions. When instances enter a warm pool they can be placed into one of three states: Warmed:Stopped, Warmed:Hibernated and Warmed:Running. So for example by keeping warm pool instances in Warmed:Stopped you can effective minimise costs. In this state you only pay for the volumes used, elastic ips associated etc. So when you keep your instances stopped or hibernated your saving on the cost of the instances themselves.</p>
+<h2 id="how-do-autoscaling-group-lifecycle-hooks-work-when-using-warm-pools">How do Autoscaling Group Lifecycle Hooks work when using Warm Pools</h2>
+<p>So I learnt there is abit of a gotcha or side affect by design of Warm Pools, when it comes to using them alongside existing Lifecycle hooks to do bootstrapping of an application on EC2 instance launch.</p>
+<p>Lets take a couple of example scenarios&hellip;</p>
+<h3 id="scenario-1---a-standard-autocaling-group-with-lifecycle-hook-applied-on-ec2_instance_launching">Scenario 1 - A Standard Autocaling group with Lifecycle Hook applied on EC2_INSTANCE_LAUNCHING:</h3>
+<p>In a standard autoscaling group with a Lifecycle Hook applied on EC2_INSTANCE_LAUNCHING scale out. The instance first moves into Pending:Wait state, whereby it will remain in the Pending:Wait state whilst you bootstrap or configure your instance using automation usually in the form of UserData scripts or SSM automations. As such the final step in your automation following the instance bootstrap will be to call the complete-lifecycle-action API to continue or complete the lifecycle action. The autoscaling group then continues moving the instance into InService within the autoscaling group ready to serve client requests.</p>
+<p><img loading="lazy" src="/img/lifecycle_hooks.png" alt="Standard Lifecycle Hooks"  title="Standard Lifecycle Hooks"  />
+</p>
+<h3 id="scenario-2---an-autoscaling-group-with-an-existing-lifecycle-hook-applied-on-ec2_instance_launching-alongside-a-warm-pool">Scenario 2 - An Autoscaling group with an existing Lifecycle Hook applied on EC2_INSTANCE_LAUNCHING alongside a Warm Pool</h3>
+<p>For an autoscaling group taking advantage of Warmpools alongside an existing EC2_INSTANCE_LAUNCHING Lifecycle Hook. You need to factor in that an instance will enter into a Pending:Wait state twice requiring triggering the complete-lifecycle-action API call <strong>twice</strong>.<br>
+<img loading="lazy" src="/img/warm-pools-lifecycle-hooks.png" alt="Lifecycle Hooks with Warm Pools"  title="Lifecycle Hooks with Warm Pools"  />
+</p>
+<ol>
+<li>The first time you must triger complete-lifecycle-action is when the instance is initially started / launched into an ASG. Usually this is when the instance is bootstrapped with automation UserData scripts or SSM automation whilst in the Warmed:Pending:Wait. The automation finalises with the first complete-lifecycle-action API call to move the instance into Warm Pool Warmed:Running, Warmed:Stopped or Warmed:Hibernated within the Warm Pool.</li>
+<li>Then you must also call complete-lifecycle-action again on any Scale Out of the autoscaling group when the instances move from a Warm pool into the ASG they goes into Pending, Pending Wait. Then ONLY after the complete-lifecycle-action API has been called the second time does the instance move to Inservice within the autoscaling group.
+Is this a bug or just the default behavior when using warm pools? My guess it has to do with the existing state machine that governs the autoscaling service control plane prior to the launch of this feature.</li>
+</ol>
+<h2 id="so-whats-the-solution">So whats the solution?</h2>
+<h2 id="you-guessed-it-more-automation">You guessed it, more automation!</h2>
+<p>The easiest way to workaround this potentially undesirable behavior without having your UserData or your SSM automation needing to call the complete-lifecycle-action twice. Is to use a Lambda function thats triggered through a Cloudwatch EventBridge Rule when an instances moves out of a Warm Pool. EC2 Auto Scaling like other AWS services supports publishing its lifecycle events directly to Cloudwatch EventBridge. As such its possible to create an EventBridge rule that filters for Warm Pool related events for example based on the instances Origin Warm Pool and Destination autoscaling group. The rule then triggers a Lambda function which calls the complete-lifecycle-action API to continue for the second time without your UserData or SSM automation scripts having to factor this in. I&rsquo;ll cover this Lifecycle hook automation along with overall Warm Pools in a CDK example as a follow up to this post.</p>
+<h2 id="other-useful-references">Other useful references:</h2>
+<p>Warm Pools
+<a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html">https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html</a>
+<a href="https://aws.amazon.com/blogs/compute/scaling-your-applications-faster-with-ec2-auto-scaling-warm-pools/">https://aws.amazon.com/blogs/compute/scaling-your-applications-faster-with-ec2-auto-scaling-warm-pools/</a></p>
+<p>EC2 Autoscaling Lifecycle Hooks
+<a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks-overview.html">https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks-overview.html</a></p>
+<p>Lifecycle Hooks with Warm Pools
+<a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/warm-pool-instance-lifecycle.html">https://docs.aws.amazon.com/autoscaling/ec2/userguide/warm-pool-instance-lifecycle.html</a></p>
+<p>Warm Pool Patterns for Event Bridge
+<a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/warm-pools-eventbridge-events.html">https://docs.aws.amazon.com/autoscaling/ec2/userguide/warm-pools-eventbridge-events.html</a></p>
+]]></content:encoded>
     </item>
   </channel>
 </rss>
