@@ -1,6 +1,6 @@
 baseURL: "https://blog.toddaas.com/"
 title: toddaas blog
-paginate: 5
+# paginate: 5
 theme: ["PaperMod"]
 
 enableRobotsTXT: true
@@ -11,110 +11,120 @@ buildExpired: false
 googleAnalytics: G-K29FPB2EME
 
 minify:
-    disableXML: true
-    minifyOutput: true
+  disableXML: true
+  minifyOutput: true
 
 params:
-    env: production # to enable google analytics, opengraph, twitter-cards and schema.
-    title: toddaas
-    description: "toddaas"
-    keywords: [blog, toddaas, cloud architect, cloud architecture, aws, cloud, networking, amazon web services, consulting]
-    author: Todd
-    # author: ["Me", "You"] # multiple authors
-    images: ["<link or path of image for opengraph, twitter-cards>"]
-    DateFormat: "January 2, 2006"
-    defaultTheme: light # dark, light
-    disableThemeToggle: true
-    ShowReadingTime: true
-    ShowShareButtons: false
-    ShowPostNavLinks: true
-    ShowBreadCrumbs: false
-    disableSpecial1stPost: false
-    disableScrollToTop: false
-    comments: false
-    hidemeta: false
-    hideFooter: true
-    hideSummary: true
-    showtoc: false
-    tocopen: false
-    label:
-        text: " "
-    ShowFullTextinRSS: true
+  env: production # to enable google analytics, opengraph, twitter-cards and schema.
+  title: toddaas
+  description: "toddaas"
+  keywords:
+    [
+      blog,
+      toddaas,
+      cloud architect,
+      cloud architecture,
+      aws,
+      cloud,
+      networking,
+      amazon web services,
+      consulting,
+    ]
+  author: Todd
+  # author: ["Me", "You"] # multiple authors
+  images: ["<link or path of image for opengraph, twitter-cards>"]
+  DateFormat: "January 2, 2006"
+  defaultTheme: light # dark, light
+  disableThemeToggle: true
+  ShowReadingTime: true
+  ShowShareButtons: false
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: false
+  disableSpecial1stPost: false
+  disableScrollToTop: false
+  comments: false
+  hidemeta: false
+  hideFooter: true
+  hideSummary: true
+  showtoc: false
+  tocopen: false
+  label:
+    text: " "
+  ShowFullTextinRSS: true
 
-    assets:
-        # disableHLJS: true # to disable highlight.js
-        # disableFingerprinting: true
-        favicon: "<link / abs url>"
-        favicon16x16: "<link / abs url>"
-        favicon32x32: "<link / abs url>"
-        apple_touch_icon: "<link / abs url>"
-        safari_pinned_tab: "<link / abs url>"
+  assets:
+    # disableHLJS: true # to disable highlight.js
+    # disableFingerprinting: true
+    favicon: "<link / abs url>"
+    favicon16x16: "<link / abs url>"
+    favicon32x32: "<link / abs url>"
+    apple_touch_icon: "<link / abs url>"
+    safari_pinned_tab: "<link / abs url>"
 
-    # profile-mode
-    profileMode:
-        enabled: true # needs to be explicitly set
-        title: "Todd Bryant"
-        subtitle: "A Cloud Architect based on the Gold Coast, Australia."
-        imageUrl: "/img/570243.jpg"
-        imageWidth: 120
-        imageHeight: 120
-        imageTitle: This is me
-        
+  # profile-mode
+  profileMode:
+    enabled: true # needs to be explicitly set
+    title: "Todd Bryant"
+    subtitle: "A Cloud Architect based on the Gold Coast, Australia."
+    imageUrl: "/img/570243.jpg"
+    imageWidth: 120
+    imageHeight: 120
+    imageTitle: This is me
 
-    # home-info mode
-    homeInfoParams:
-        Title: "Gday, \U0001F44B"
-        Content: ""
+  # home-info mode
+  homeInfoParams:
+    Title: "Gday, \U0001F44B"
+    Content: ""
 
-    socialIcons:
-        - name: email
-          url: "mailto:hello@toddaas.com"
-        - name: linkedin
-          url: "https://www.linkedin.com/in/bryanttodd/"
-        - name: github
-          url: "https://github.com/toddsfish"
-        - name: other
-          url: "https://toddaas-aueast-prod-shaarli.azurewebsites.net/"
-        - name: rss
-          url: "https://blog.toddaas.com/index.xml"
+  socialIcons:
+    - name: email
+      url: "mailto:hello@toddaas.com"
+    - name: linkedin
+      url: "https://www.linkedin.com/in/bryanttodd/"
+    - name: github
+      url: "https://github.com/toddsfish"
+    - name: other
+      url: "https://toddaas-aueast-prod-shaarli.azurewebsites.net/"
+    - name: rss
+      url: "https://blog.toddaas.com/index.xml"
 
-    analytics:
-        google:
-            SiteVerificationTag: "G-K29FPB2EME"
-        bing:
-            SiteVerificationTag: "XYZabc"
-        yandex:
-            SiteVerificationTag: "XYZabc"
+  analytics:
+    google:
+      SiteVerificationTag: "G-K29FPB2EME"
+    bing:
+      SiteVerificationTag: "XYZabc"
+    yandex:
+      SiteVerificationTag: "XYZabc"
 
-    cover:
-        hidden: true # hide everywhere but not in structured data
-        hiddenInList: true # hide on list pages and home
-        hiddenInSingle: true # hide on single page
+  cover:
+    hidden: true # hide everywhere but not in structured data
+    hiddenInList: true # hide on list pages and home
+    hiddenInSingle: true # hide on single page
 
-    # for search
-    # https://fusejs.io/api/options.html
-    fuseOpts:
-        isCaseSensitive: false
-        shouldSort: true
-        location: 0
-        distance: 1000
-        threshold: 0.4
-        minMatchCharLength: 0
-        keys: ["title", "permalink", "summary", "content"]
+  # for search
+  # https://fusejs.io/api/options.html
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys: ["title", "permalink", "summary", "content"]
 menu:
-    main:
-        - identifier: home
-          name: home
-          url: /
-          weight: 1
-        - identifier: posts
-          name: posts
-          url: /posts/
-          weight: 2
-        - identifier: tags
-          name: tags
-          url: /tags/
-          weight: 3
+  main:
+    - identifier: home
+      name: home
+      url: /
+      weight: 1
+    - identifier: posts
+      name: posts
+      url: /posts/
+      weight: 2
+    - identifier: tags
+      name: tags
+      url: /tags/
+      weight: 3
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 # pygmentsUseClasses: true
 # markup:

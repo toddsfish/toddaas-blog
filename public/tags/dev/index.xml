@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Dev on toddaas blog</title>
-    <link>http://localhost:1313/tags/dev/</link>
+    <link>https://blog.toddaas.com/tags/dev/</link>
     <description>Recent content in Dev on toddaas blog</description>
     <image>
       <title>toddaas blog</title>
-      <url>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+      <url>https://blog.toddaas.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://blog.toddaas.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- 0.123.7</generator>
     <language>en</language>
     <lastBuildDate>Wed, 07 Apr 2021 05:10:21 +1000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/dev/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.toddaas.com/tags/dev/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Leaning towards dev(ops)</title>
-      <link>http://localhost:1313/posts/leaning_towards_dev_ops/</link>
+      <link>https://blog.toddaas.com/posts/leaning_towards_dev_ops/</link>
       <pubDate>Wed, 07 Apr 2021 05:10:21 +1000</pubDate>
-      <guid>http://localhost:1313/posts/leaning_towards_dev_ops/</guid>
+      <guid>https://blog.toddaas.com/posts/leaning_towards_dev_ops/</guid>
       <description>Starting this year I made it key goal of mine to actively build upon whatever dev knowledge I still remember from my bachelors about 10 years ago. Of course the dev mindset is still kinda there. I started my professional endeavors in the jack of all trades infrastructure engineering space following my IT degree. With a small focus on the networking side of things. During my work I&amp;rsquo;ve always adopted the DRY mantra.</description>
       <content:encoded><![CDATA[<p>Starting this year I made it key goal of mine to actively build upon whatever dev knowledge I still remember from my bachelors about 10 years ago.  Of course the dev mindset is still kinda there.  I started my professional endeavors in the jack of all trades infrastructure engineering space following my IT degree.  With a small focus on the networking side of things.  During my work I&rsquo;ve always adopted the DRY mantra.  I&rsquo;m  scripting where I can in Python, Powershell, Bash etc to enable me to move onto more rewarding tasks.  By adopting this mindset of automating the more mundane tasks required of a (cloud) infrastructure engineer, its definitely bought me some personal time along the way.</p>
 <p>Moving onto the motivation behind this set of dev transformational posts.  As I&rsquo;ve increased my knowledge of AWS in the past few years, mainly due to my day to day work involving supporting the cloud networks of Business and Enterprise customers from around the world.  I&rsquo;ve found a whole heap of our customer interactions are with mainly developers or what I would dub full stack engineers not strictly developers.</p>
