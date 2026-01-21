@@ -1,2 +1,2 @@
-# toddaas-blog
+# Personal blog
 blog.toddaas.com
